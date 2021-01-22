@@ -13,6 +13,7 @@
     <title>AI 얼굴형 분석기</title>
 
     <meta charset="UTF-8">
+    <link rel="shortcut icon" href="./apple-icon-60x60.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js">
@@ -21,7 +22,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     <!-- Go to www.addthis.com/dashboard to customize your tools -->
-    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-600acb20f79c7f6f"></script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e64b3727e862b06"></script>
+    
 
 
    
@@ -53,6 +55,12 @@
             </div>
             <div class="file-upload-content">
                 <img class="file-upload-image" id="face-image" src="#" alt="your image" />
+                <div id="loading" class="animated bounce">
+                    <div class="spinner-border text-dark" role="status">
+                        <span class="sr-only"> </span>
+                    </div>
+                    <p class="text-center">AI가 당신의 얼굴형을 분석중입니다.</p>
+                </div>
 
                 <div style="visibility: hidden;" id="label-container"></div>
                 <div class="image-title-wrap">
@@ -64,7 +72,7 @@
         <p class="result-message"> </p>
         <canvas id="myChart" width="400" height="200"></canvas>
         <!-- Go to www.addthis.com/dashboard to customize your tools -->
-        <div class="addthis_inline_share_toolbox_qcge"></div>
+        <div id="addThis" class="addthis_inline_share_toolbox_6lz1"></div>
             
 
         <footer>
@@ -219,6 +227,7 @@
 
                 reader.onload = function (e) {
                     $('.image-upload-wrap').hide();
+                    $('#loading').show();
 
                     $('.file-upload-image').attr('src', e.target.result);
                     $('.file-upload-content').show();
@@ -229,7 +238,8 @@
                 reader.readAsDataURL(input.files[0]);
                 init().then(() => {
                     console.log("hello");
-                    predict()
+                    predict();
+                    $('#loading').hide();
                 });
 
             } else {

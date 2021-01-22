@@ -208,3 +208,6 @@ footer #brand{
   color:#647586
 }
 
+#loading {
+  display: none;
+}
