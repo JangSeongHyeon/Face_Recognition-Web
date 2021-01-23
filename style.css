@@ -2,7 +2,7 @@ body {
     font-family: 'Jua', sans-serif;
     background:linear-gradient(
         295deg,
-        rgba(154, 72, 255, 0.65),
+        rgba(133, 255, 72, 0.65),
         rgba(16, 218, 97, 0.65)
       )
   }
@@ -23,6 +23,7 @@ body {
     padding: 20px;
     border:8px solid rgb(181, 104, 204);
     box-shadow: 0px 8px 20px 6px rgba(0, 0, 0, 0.6);
+    margin-bottom: 40px;
   }
   
   .file-upload-btn {
@@ -175,7 +176,7 @@ body {
 }
 
 .result-message{
-  font-size: 50px;
+  font-size: 30px;
 }
 
 
@@ -211,3 +212,108 @@ footer #brand{
 #loading {
   display: none;
 }
+
+.result-image{
+  display: none;
+}
+
+#label-container {
+  width: 40%;
+  margin: 0 auto;
+}
+
+.animal-label {
+  width: 20%;
+  text-align: left;
+  height: 2rem;
+}
+
+.bar-container {
+  height: 2.7rem;
+}
+
+.percent-text {
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+
+.test1-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  background-color: rgba(235, 166, 190, 0.2);
+}
+.test1-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  background-color: rgba(235, 166, 190, 1);
+}
+
+
+.test2-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  background-color:rgba(49, 132, 155, 0.2);
+}
+.test2-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  background-color: rgba(49, 132, 155, 1);
+}
+
+
+
+.test3-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  background-color: rgba(195, 140, 102, 0.2);
+}
+.test3-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  background-color: rgba(195, 140, 102, 1);
+}
+
+
+
+.test4-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  background-color: rgba(251, 176, 59, 0.2);
+}
+.test4-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  background-color:rgba(251, 176, 59, 1);
+}
+
+
+

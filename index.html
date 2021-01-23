@@ -10,30 +10,29 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
-    <title>AI 얼굴형 분석기</title>
+    <title>축구선수 닮은꼴 테스트</title>
 
     <meta charset="UTF-8">
-    <link rel="shortcut icon" href="./apple-icon-60x60.png" />
+    <link rel="shortcut icon" href="./favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js">
     </script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     <!-- Go to www.addthis.com/dashboard to customize your tools -->
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e64b3727e862b06"></script>
-    
 
 
-   
+
+
 </head>
 
 <body>
     <div id="navigation">
         <div id="logo_block">
-            <span id="logo_text">AI 얼굴형 분석기</span>
-            <a href="https://github.com/JangSeongHyeon">개발자 by 장성현</a>
+            <span id="logo_text">축구선수 닮은꼴 테스트</span>
+            made by 장성현
         </div>
     </div>
 
@@ -62,18 +61,21 @@
                     <p class="text-center">AI가 당신의 얼굴형을 분석중입니다.</p>
                 </div>
 
-                <div style="visibility: hidden;" id="label-container"></div>
+                
                 <div class="image-title-wrap">
                     <button type="button" onclick="removeUpload()" class="remove-image">Remove <span
                             class="image-title">Uploaded Image</span></button>
                 </div>
             </div>
         </div>
-        <p class="result-message"> </p>
-        <canvas id="myChart" width="400" height="200"></canvas>
+
+        <img style="width:250px; height: 240px;" class="result-image" src="">
+        <p class="result-message"></p>
+        <div id="label-container"></div>
+        
         <!-- Go to www.addthis.com/dashboard to customize your tools -->
         <div id="addThis" class="addthis_inline_share_toolbox_6lz1"></div>
-            
+
 
         <footer>
             <div id="footer_links">
@@ -86,21 +88,27 @@
                 <span><strong>장성현</strong></span>
                 <span>이메일:dwg04045@gmail.com</span>
                 <span>깃허브:JangSeongHyeon</span>
-                
+                <span>FACE.SHAPE 2021 ©</span>
             </div>
         </footer>
 
 
 
     </div>
+
+
+
+
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+
+
     <script type="text/javascript">
         // More API functions here:
         // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
 
         // the link to your model provided by Teachable Machine export panel
-        const URL = "https://teachablemachine.withgoogle.com/models/O6MfmupUD/";
+        const URL = "https://teachablemachine.withgoogle.com/models/dPwJAbkBu/";
 
         let model, webcam, labelContainer, maxPredictions;
 
@@ -119,7 +127,9 @@
 
             labelContainer = document.getElementById("label-container");
             for (let i = 0; i < maxPredictions; i++) { // and class labels
-                labelContainer.appendChild(document.createElement("div"));
+                var element = document.createElement("div")
+                element.classList.add("d-flex");
+                labelContainer.appendChild(element);
             }
         }
 
@@ -131,91 +141,97 @@
             const prediction = await model.predict(image, false);
             console.log(prediction);
 
+            var preArr = prediction.sort((a, b) => parseFloat(b.probability) - parseFloat(a
+                .probability));
+            var resultmessage;
+            var imgurl;
+            switch (preArr[0].className) {
+                case "test1":
+                    console.log('동그란 얼굴');
+                    resultmessage = "동그란 얼굴형";
+                    imgurl = "sample.jpg"
+                    break;
+                case "test2":
+                    console.log('각진 얼굴');
+                    resultmessage = "각진형 얼굴";
+                    imgurl = "sample.jpg"
+                    break;
 
-            new Promise((resolve, reject) => {
-                    var ctx = document.getElementById('myChart');
-                    var myChart = new Chart(ctx, {
-                        type: 'horizontalBar',
-                        data: {
-                            labels: ['동그란얼굴', '각진얼굴', '계란형 얼굴', '긴얼굴', '역삼각형 얼굴'],
-                            datasets: [{
-                                label: '정확도',
-                                data: [prediction[0].probability*10, prediction[1].probability*10,
-                                    prediction[2].probability*10, prediction[3].probability*10,
-                                    prediction[4].probability*10
-                                ],
-                                backgroundColor: [
-                                    'rgba(255, 99, 132, 0.2)',
-                                    'rgba(54, 162, 235, 0.2)',
-                                    'rgba(255, 206, 86, 0.2)',
-                                    'rgba(75, 192, 192, 0.2)',
-                                    'rgba(153, 102, 255, 0.2)'
-                                ],
-                                borderColor: [
-                                    'rgba(255, 99, 132, 1)',
-                                    'rgba(54, 162, 235, 1)',
-                                    'rgba(255, 206, 86, 1)',
-                                    'rgba(75, 192, 192, 1)',
-                                    'rgba(153, 102, 255, 1)'
-                                ],
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            responsive: false,
-                            scales: {
-                                yAxes: [{
-                                    ticks: {
-                                        beginAtZero: true
-                                    }
-                                }]
-                            },
-                        }
-                        
-                    });
-                    resolve();
-                })
-                .then(() => {
-                    var preArr = prediction.sort((a, b) => parseFloat(b.probability) - parseFloat(a
-                        .probability));
-                    var resultmessage;
-                    switch (preArr[0].className) {
-                        case "round face":
-                            console.log('동그란 얼굴');
-                            resultmessage = "동그란 얼굴형";
-                            break;
-                        case "angular face":
-                            console.log('각진 얼굴');
-                            resultmessage = "각진형 얼굴";
-                            break;
+                case "test3":
+                    console.log('계란형 얼굴');
+                    resultmessage = "계란형 얼굴";
+                    imgurl = "sample.jpg"
+                    break;
 
-                        case "egg-shaped face":
-                            console.log('계란형 얼굴');
-                            resultmessage = "계란형 얼굴";
-                            break;
+                case "test4":
+                    console.log('긴 얼굴');
+                    resultmessage = "긴 얼굴형";
+                    imgurl = "sample.jpg"
+                    break;
 
-                        case "long face":
-                            console.log('긴 얼굴');
-                            resultmessage = "긴 얼굴형";
-                            break;
+                case "test5":
+                    console.log('역삼각형 얼굴');
+                    resultmessage = "역삼각형 얼굴";
+                    imgurl = "sample.jpg"
+                    break;
 
-                        case "triangle face":
-                            console.log('역삼각형 얼굴');
-                            resultmessage = "역삼각형 얼굴";
-                            break;
-
-                        default:
-                            resultmessage = "알수없음";
-                    }
-                    $('.result-message').html(resultmessage);
-
-                })
-                    
-            for (let i = 0; i < maxPredictions; i++) {
-                const classPrediction =
-                    prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-                labelContainer.childNodes[i].innerHTML = classPrediction;
+                default:
+                    resultmessage = "알수없음";
             }
+            $('.result-message').html(resultmessage);
+            $('.result-image').attr("src", imgurl);
+            $('.result-image').show();
+
+
+            var barWidth;
+            for (let i = 0; i < maxPredictions; i++) {
+                // const classPrediction =prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+                // labelContainer.childNodes[i].innerHTML = classPrediction;
+
+                if (prediction[i].probability.toFixed(2) > 0.1) {
+                    barWidth = Math.round(prediction[i].probability.toFixed(2) * 100) + "%";
+                } else if (prediction[i].probability.toFixed(2) >= 0.01) {
+                    barWidth = "4%"
+                } else {
+                    barWidth = "2%"
+                }
+
+                var labelTitle;
+                labelTitle="test";
+                var label = "<div class='animal-label d-flex align-items-center'>" + labelTitle + "</div>"
+                var bar = "<div class='bar-container position-relative container'><div class='" + prediction[i].className + "-box'></div><div class='d-flex justify-content-center align-items-center " + prediction[i].className + "-bar' style='width: " + barWidth + "'><span class='d-block percent-text'>" + Math.round(prediction[i].probability.toFixed(2) * 100) + "%</span></div></div>"
+                labelContainer.childNodes[i].innerHTML = label + bar;
+                
+            }
+
+
+
+
+
+
+            // labelContainer.innerHTML = "<b><font color='red'>"+Math.random()+"</font></b>";
+            // var barWidth;
+            // for (let i = 0; i < maxPredictions; i++) {
+            //     console.log(prediction[i].probability);
+            //     if (prediction[i].probability.toFixed(2) > 0.1) {
+            //         barWidth = Math.round(prediction[i].probability.toFixed(2) * 100) + "%";
+            //     } else if (prediction[i].probability.toFixed(2) >= 0.01) {
+            //         barWidth = "4%"
+            //     } else {
+            //         barWidth = "2%"
+            //     }
+            //     var labelTitle = "테스트";
+                
+            //     var label = "<div class='animal-label d-flex align-items-center'>" + labelTitle + "</div>"
+            //     var bar = "<div class='bar-container position-relative container'><div class='" + prediction[i].className + "-box'></div><div class='d-flex justify-content-center align-items-center " +prediction[i].className + "-bar' style='width: " + barWidth +"'><span class='d-block percent-text'>" + Math.round(prediction[i].probability.toFixed(2) *100) +"%</span></div></div>"
+            //     labelContainer.childNodes[i].innerHTML = label + bar;
+            // }
+
+            // for (let i = 0; i < maxPredictions; i++) {
+            //     const classPrediction =
+            //     prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+            //     labelContainer.childNodes[i].innerHTML = classPrediction;
+            // }
         }
     </script>
 
