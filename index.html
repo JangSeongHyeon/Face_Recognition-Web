@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
-    <title>축구선수 닮은꼴 테스트</title>
+    <title>닮은꼴 대통령 테스트</title>
 
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="./favicon.png" />
@@ -29,49 +29,50 @@
 </head>
 
 <body>
-    <div id="navigation">
-        <div id="logo_block">
-            <span id="logo_text">축구선수 닮은꼴 테스트</span>
-            made by 장성현
-        </div>
-    </div>
-
 
     <div id=container>
-        <img style="width:350px;" src="./얼굴형 분석기_001 (2).png">
+        <div id="logo_container" class="now">
+            <img id="container_logo" style="width:350px;" src="./얼굴형 분석기_001 (2).png">
+        </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
         </script>
         <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-        <div class="file-upload">
-            <div class="image-upload-wrap">
-                <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
-                <div class="drag-text">
-                    <img style="width:50px" src="./camera.png" alt="">
-                    <h3>얼굴 사진을 올려놓거나 눌러서 업로드 하세요!</h3>
-                </div>
-            </div>
-            <div class="file-upload-content">
-                <img class="file-upload-image" id="face-image" src="#" alt="your image" />
-                <div id="loading" class="animated bounce">
-                    <div class="spinner-border text-dark" role="status">
-                        <span class="sr-only"> </span>
+        
+        <div id="file_container" class="s">
+            <div class="file-upload">
+                <div class="image-upload-wrap">
+                    <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                    <div class="drag-text">
+                        <img style="width:50px" src="./camera.png" alt="">
+                        <h3>얼굴 사진을 올려놓거나 눌러서 업로드 하세요!</h3>
                     </div>
-                    <p class="text-center">AI가 당신의 얼굴형을 분석중입니다.</p>
                 </div>
+                <div class="file-upload-content">
+                    <img class="file-upload-image" id="face-image" src="#" alt="your image" />
+                    <div id="loading" class="animated bounce">
+                        <div class="spinner-border text-dark" role="status">
+                            <span class="sr-only"> </span>
+                        </div>
+                        <p class="text-center">AI가 당신의 얼굴형을 분석중입니다.</p>
+                    </div>
 
-                
-                <div class="image-title-wrap">
-                    <button type="button" onclick="removeUpload()" class="remove-image">Remove <span
-                            class="image-title">Uploaded Image</span></button>
+                    
+                    <div class="image-title-wrap">
+                        <button type="button" onclick="removeUpload()" class="remove-image">Remove <span
+                                class="image-title">Uploaded Image</span></button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <img style="width:250px; height: 240px;" class="result-image" src="">
-        <p class="result-message"></p>
-        <div id="label-container"></div>
+
+        <div id="result-box1">
+            <img style="width:250px; height: 240px;" class="result-image" src="">
+            <p class="result-message"></p>
+            <div id="label-container"></div>
+        </div>
         
         <!-- Go to www.addthis.com/dashboard to customize your tools -->
         <div id="addThis" class="addthis_inline_share_toolbox_6lz1"></div>
@@ -84,6 +85,7 @@
                 </div>
                 <div id="sns"></div>
             </div>
+
             <div id="footer_info">
                 <span><strong>장성현</strong></span>
                 <span>이메일:dwg04045@gmail.com</span>
