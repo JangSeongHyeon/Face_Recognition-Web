@@ -1,21 +1,48 @@
+
+
 body {
+  
     font-family: 'Jua', sans-serif;
-    background:linear-gradient(
-        295deg,
-        rgba(133, 255, 72, 0.65),
-        rgba(16, 218, 97, 0.65)
-      )
+    background-color:rgb(230, 255, 204)
   }
 
   canvas{
     margin: 0 auto;
 }
 
+#navigation{
+  width: 100%;
+  height: 60px;
+  padding-left: 5%;
+  margin-bottom: 20px;
+  background-color: white;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
+  text-align: center;
+  
+}
+
+
+#container{
+  width: 100%;
+  height: 100%;
+  position:relative;
+}
+
+#inner_container{
+  width: 50%;
+  height: 1000px;
+  border-radius: 30px;
+  background-color: white;
+  margin:0 auto;
+}
+
+
   
 
   #logo_container,#file_container
   {
     text-align: center;
+    display: none;
   }
 
   #logo_container{
@@ -27,6 +54,18 @@ body {
     animation-duration: 1.5s;
     
     animation-name: slidein2;
+    margin-bottom:40px;
+    padding-bottom: 50px;
+  }
+
+  #result_container{
+    width: 400px;
+    height:350px;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin-bottom: 40px;
   }
 
   .file-upload {
@@ -35,10 +74,13 @@ body {
     width: 350px;
     margin: 0 auto;
     padding: 20px;
-    border:8px solid rgb(181, 104, 204);
-    box-shadow: 0px 8px 20px 6px rgba(0, 0, 0, 0.6);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     margin-bottom: 40px;
 
+  }
+
+  .file-upload:hover{
+    box-shadow:rgb(204, 255, 204) 0 0 10px 5px;
   }
 
 
@@ -73,23 +115,21 @@ body {
     width: 100%;
     margin: 0;
     color: #fff;
-    background: #1FB264;
     border: none;
     padding: 10px;
     border-radius: 4px;
-    border-bottom: 4px solid #15824B;
     transition: all .2s ease;
     outline: none;
     text-transform: uppercase;
     font-weight: 700;
   }
   
-  .file-upload-btn:hover {
+  /* .file-upload-btn:hover {
     background: #1AA059;
     color: #ffffff;
     transition: all .2s ease;
     cursor: pointer;
-  }
+  } */
   
   .file-upload-btn:active {
     border: 0;
@@ -119,10 +159,6 @@ body {
     position: relative;
   }
   
-  .image-dropping,
-  .image-upload-wrap:hover {
-    background-color: #1FB264;
-  }
   
   .image-title-wrap {
     padding: 0 15px 15px 15px;
@@ -134,10 +170,10 @@ body {
   }
   
   .drag-text h3 {
-    font-weight: 100;
+    font-weight: 70;
     text-transform: uppercase;
-    color: #15824B;
-    padding: 60px 0;
+    padding: 40px 0;
+    font-size: 20px;
   }
   
   .file-upload-image {
@@ -177,9 +213,9 @@ body {
 
 
 #logo_block{
-    width:500px;
     display: inline-block;
-    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-right: 20px;
 }
 
 #logo_text{
@@ -225,6 +261,54 @@ footer #brand{
 #loading {
   display: none;
 }
+
+#lodingimg{
+  width: 100px;
+  height: 100px;
+  margin-right: 5px;
+  margin-bottom: 20px;
+}
+
+
+
+/* 버튼 */
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --background: #E5FFB3;
+  --background-accent: #DBF8A3;
+  --background-accent-2: #BDE66E;
+  --light: #92DE34;
+  --dark: #69BC22;
+  --text: #025600;
+}
+
+#showButton {
+  visibility: hidden;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: var(--light);
+  width: 140px;
+  height: 50px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  background-size: 100% 100%;
+  box-shadow: 0 0 0 7px var(--light) inset;
+  margin-bottom: 15px;
+}
+
+#showButton:hover {
+  width: 170px;
+}
+
+
+
+  /* 결과이미지 */
 
 .result-image{
   display: none;
