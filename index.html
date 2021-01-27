@@ -37,7 +37,7 @@
     </div>
 
     <div id=container>
-        <div id="inner_container">
+        <div id="inner_container" class="shadow">
             <div id="logo_container" class="now">
                 <img id="container_logo" style="width:80%;height:300px;margin-bottom: 20px;" src="./big.png">
             </div>
@@ -75,24 +75,40 @@
                     </div>
                 </div>
             </div>
-
-            <div id="result_container">
-                <div id="tit1"><span>다른사람들을 끌어들이는 귀여운 매력을 가진 얼굴</span></div>
-                <div id="tit2"><span>걸스데이</span></div>
-                <img style="width:200px" src="./image.png" alt="">
-                <div id="result_text">
-                    <p>안녕하세요</p>
+            
+            
+            <div id="result_container" class="s">
+                <div id="result_inner">
+                    <div class="hidden">
+                        <p>margin</p>
+                    </div>
+                    <div class="text1">
+                        <span>월드스타가 될 얼굴!!</span>
+                    </div>
+                    <div class="text2">
+                        <p id="result_title"><strong></strong></p>
+                    </div>
+                    <div id="result_imagebox">
+                        <img style="width: 200px;" src="./bts.png" alt="">
+                    </div>
+                    
                 </div>
+                <div id="result_text">
+                    당신은 방탄소년단과같이 초롱초롱한 눈을 가지고 입은 앙다물 입으로 방탄소년단과 비슷한 월드스타가 될 얼굴입니다. 지금 바로 방탄소년단의 새로운 멤버로 들어가시겠어요?
+                </div>
+                <div id="label-container"></div>
+                <div class="hidden">
+                    <p>margin</p>
+                </div>
+                 
             </div>
+              
         </div>
+    </div>
 
 
 
-        <div id="result-box1">
-            <img style="width:250px; height: 240px;" class="result-image" src="">
-            <p class="result-message"></p>
-            <div id="label-container"></div>
-        </div>
+        
         
         <!-- Go to www.addthis.com/dashboard to customize your tools -->
         <div id="addThis" class="addthis_inline_share_toolbox_6lz1"></div>
@@ -198,17 +214,14 @@
                 default:
                     resultmessage = "알수없음";
             }
-            // $('.result-message').html(resultmessage);
-            // $('.result-image').attr("src", imgurl);
-            // $('.result-image').show();
-            completed();
 
+            $('#result_title').html(resultmessage);
 
+            
             var barWidth;
             for (let i = 0; i < maxPredictions; i++) {
-                // const classPrediction =prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-                // labelContainer.childNodes[i].innerHTML = classPrediction;
-
+                console.log('오나');
+                console.log(prediction[i].probability);
                 if (prediction[i].probability.toFixed(2) > 0.1) {
                     barWidth = Math.round(prediction[i].probability.toFixed(2) * 100) + "%";
                 } else if (prediction[i].probability.toFixed(2) >= 0.01) {
@@ -217,40 +230,20 @@
                     barWidth = "2%"
                 }
 
-                var labelTitle;
-                labelTitle="test";
+                var labelTitle = "테스트";
                 var label = "<div class='animal-label d-flex align-items-center'>" + labelTitle + "</div>"
-                var bar = "<div class='bar-container position-relative container'><div class='" + prediction[i].className + "-box'></div><div class='d-flex justify-content-center align-items-center " + prediction[i].className + "-bar' style='width: " + barWidth + "'><span class='d-block percent-text'>" + Math.round(prediction[i].probability.toFixed(2) * 100) + "%</span></div></div>"
+                var bar = "<div class='bar-container position-relative container'><div class='" + prediction[i].className + "-box'></div><div class='d-flex justify-content-center align-items-center " +prediction[i].className + "-bar' style='width: " + barWidth +"'><span class='d-block percent-text'>" + Math.round(prediction[i].probability.toFixed(2) *100) +"%</span></div></div>"
+                console.log(labelContainer);
                 labelContainer.childNodes[i].innerHTML = label + bar;
-                
             }
 
+            completed();
 
+            
 
-
-
-
-            // labelContainer.innerHTML = "<b><font color='red'>"+Math.random()+"</font></b>";
-            // var barWidth;
             // for (let i = 0; i < maxPredictions; i++) {
-            //     console.log(prediction[i].probability);
-            //     if (prediction[i].probability.toFixed(2) > 0.1) {
-            //         barWidth = Math.round(prediction[i].probability.toFixed(2) * 100) + "%";
-            //     } else if (prediction[i].probability.toFixed(2) >= 0.01) {
-            //         barWidth = "4%"
-            //     } else {
-            //         barWidth = "2%"
-            //     }
-            //     var labelTitle = "테스트";
+            //     const classPrediction =prediction[i].className + ": " + prediction[i].probability.toFixed(2);
                 
-            //     var label = "<div class='animal-label d-flex align-items-center'>" + labelTitle + "</div>"
-            //     var bar = "<div class='bar-container position-relative container'><div class='" + prediction[i].className + "-box'></div><div class='d-flex justify-content-center align-items-center " +prediction[i].className + "-bar' style='width: " + barWidth +"'><span class='d-block percent-text'>" + Math.round(prediction[i].probability.toFixed(2) *100) +"%</span></div></div>"
-            //     labelContainer.childNodes[i].innerHTML = label + bar;
-            // }
-
-            // for (let i = 0; i < maxPredictions; i++) {
-            //     const classPrediction =
-            //     prediction[i].className + ": " + prediction[i].probability.toFixed(2);
             //     labelContainer.childNodes[i].innerHTML = classPrediction;
             // }
         }
@@ -267,11 +260,11 @@
 
         function showResult(){
             console.log('d');
-            $("#logo_container").attr("hidden",true);
-            $("#file_container").attr("hidden",true);
-            $("#showButton").attr("hidden",true);
-            var text = document.createTextNode('Hello');
-            document.getElementById('#inner_container').appendChild(text)
+            $("#logo_container").css("display","none");
+            $("#file_container").css("display","none");
+            $("#showButton").css("display","none");
+            $("#result-box1").css("display","none");
+            $("#result_container").css("display","block");
         }
 
 

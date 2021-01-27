@@ -1,4 +1,11 @@
+span{
+  margin:0;
+  padding: 0;
+}
 
+.hidden{
+  visibility: hidden;
+}
 
 body {
   
@@ -30,10 +37,13 @@ body {
 
 #inner_container{
   width: 50%;
-  height: 1000px;
   border-radius: 30px;
   background-color: white;
   margin:0 auto;
+}
+
+.shadow{
+  
 }
 
 
@@ -42,7 +52,6 @@ body {
   #logo_container,#file_container
   {
     text-align: center;
-    display: none;
   }
 
   #logo_container{
@@ -60,10 +69,35 @@ body {
 
   #result_container{
     width: 400px;
-    height:350px;
     margin:0 auto;
-    margin-top: 3%;
-    background-color: turquoise;
+    display: none;
+  }
+
+  #result_inner{
+    text-align: center;
+  }
+
+  .text1{
+    text-align: center;
+    margin-top: 50px;
+    font-weight: 300;
+    font-size: 18px;
+    letter-spacing: -0.05em;
+  }
+
+  .text2{
+    text-align: center;
+  }
+
+  div>.text2{
+    font-size: 40px;
+    color: #000;
+    font-weight: bold;
+  }
+  
+
+  #result_imagebox{
+    margin-top: 5px;
   }
 
   #tit1{
@@ -71,8 +105,7 @@ body {
   }
 
   #result_text{
-    background:#f3f3f3 ;
-    height: 200px;
+    margin-top: 65px;
   }
 
   .file-upload {
@@ -317,13 +350,11 @@ footer #brand{
 
   /* 결과이미지 */
 
-.result-image{
-  display: none;
-}
-
 #label-container {
-  width: 40%;
+  width: 80%;
   margin: 0 auto;
+  margin-top: 45px;
+  margin-bottom: 30px;
 }
 
 .animal-label {
