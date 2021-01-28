@@ -37,6 +37,37 @@
     </div>
 
     <div id=container>
+        <div id="static_area">
+            <div id="static_button">
+                <a href="mailto:dwg04045@gmail.com">
+                    <span>made by.</span>
+                    <span>장성현</span>
+                    <span style="margin-top: 5px;"><img style="width:30px;height: 20px;margin-top:3px;" src="./youtu.png" alt="">문의하기</span>
+                </a>
+            </div>
+            <div id="static_button">
+                <a href="https://www.youtube.com/channel/UCQNE2JmbasNYbjGAcuBiRRg">
+                    <span>제작도움</span>
+                    <span>Youtube</span>
+                    <span>조코딩 채널</span>
+                    <span><img style="width:30px;height: 20px;margin-right: 3px;" src="./youtu.png" alt="">바로가기</span>
+                </a>
+            </div>
+        </div>
+        <div id="start_container">
+            <div>
+                <img style="width: 200px" src="./main1.png">
+            </div>
+            <div id="strt_title">
+                <p id="start1">닮은꼴 아이돌그룹 테스트</p>
+                <p class="start2">내가 아이돌 그룹의 새로운 멤버가 된다면?</p>
+                <p class="start2">인공지능 얼굴분석을 통해 나의 얼굴과 어울리는 아이들 그룹을 추천해드립니다. </p>
+                <button id="startButton" onclick="startService()">시작하기</button>
+            </div>
+            
+            
+            
+        </div>
         <div id="inner_container" class="shadow">
             <div id="logo_container" class="now">
                 <img id="container_logo" style="width:80%;height:300px;margin-bottom: 20px;" src="./big.png">
@@ -66,12 +97,6 @@
                             <p id="loadingtext" class="text-center">인공지능이 당신의 얼굴형을 분석중입니다.</p>
                             <button id="showButton" onclick="showResult()">결과보기</button>
                         </div>
-
-                        
-                        <!-- <div class="image-title-wrap">
-                            <button type="button" onclick="removeUpload()" class="remove-image">Remove <span
-                                    class="image-title">Uploaded Image</span></button>
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -97,6 +122,10 @@
                     당신은 방탄소년단과같이 초롱초롱한 눈을 가지고 입은 앙다물 입으로 방탄소년단과 비슷한 월드스타가 될 얼굴입니다. 지금 바로 방탄소년단의 새로운 멤버로 들어가시겠어요?
                 </div>
                 <div id="label-container"></div>
+                <div class="image-title-wrap">
+                    <button type="button" onclick="restartService()" class="remove-image">다시시작하기 <span
+                            class="image-title">다시시작하기</span></button>
+                </div>
                 <div class="hidden">
                     <p>margin</p>
                 </div>
@@ -127,7 +156,6 @@
         <div id="footer_info">
             <span><strong>장성현</strong></span>
             <span>이메일:dwg04045@gmail.com</span>
-            <span>깃허브:JangSeongHyeon</span>
             <span>FACE.SHAPE 2021 ©</span>
         </div>
     </footer>
@@ -251,11 +279,27 @@
 
     <script>
         
+        function startService(){
+            $('#start_container').css("display","none");
+            $('#navigation').css("display","block");
+            $('footer').css("display","block");
+            $('#inner_container').css("display","block");
+
+        }
         function completed(){
             console.log('d')
             $('#lodingimg').attr("src",'./completed.gif');
             $('#loadingtext').text('분석이 완료되었습니다!');
             $("#showButton").css("visibility", "visible");
+        }
+
+        function restartService(){
+            $('#result_container').css("display","none");
+            $('#inner_container').css("display","block");
+            $('#file_container').css("display","block");
+            
+            removeUpload();
+
         }
 
         function showResult(){
@@ -302,6 +346,8 @@
             $('.file-upload-content').hide();
             $('.image-upload-wrap').show();
         }
+
+
         $('.image-upload-wrap').bind('dragover', function () {
             $('.image-upload-wrap').addClass('image-dropping');
         });
