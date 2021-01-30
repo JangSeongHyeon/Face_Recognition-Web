@@ -32,7 +32,7 @@
 
     <div id="navigation">
         <div id="logo_block">
-            <span id="logo_text">아이돌그룹 테스트</span>
+            <img id="container_logo" style="width:450px;margin-top: 10px;" src="./logo2.png">
         </div>
     </div>
 
@@ -55,11 +55,8 @@
             </div>
         </div>
         <div id="start_container">
-            <div>
-                <img style="width: 200px" src="./main1.png">
-            </div>
             <div id="strt_title">
-                <p id="start1">닮은꼴 아이돌그룹 테스트</p>
+                <img style="width: 500px" src="./logo.png" alt="">
                 <p class="start2">내가 아이돌 그룹의 새로운 멤버가 된다면?</p>
                 <p class="start2">인공지능 얼굴분석을 통해 나의 얼굴과 어울리는 아이들 그룹을 추천해드립니다. </p>
                 <button id="startButton" onclick="startService()">시작하기</button>
@@ -68,9 +65,9 @@
             
             
         </div>
-        <div id="inner_container" class="shadow">
+        <div id="inner_container" class="gradient-border all">
             <div id="logo_container" class="now">
-                <img id="container_logo" style="width:80%;height:300px;margin-bottom: 20px;" src="./big.png">
+                
             </div>
 
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
@@ -79,6 +76,11 @@
             <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
             
             <div id="file_container" class="s">
+                <label class="rocker">
+                    <input type="checkbox" checked>
+                    <span class="switch-left">남자</span>
+                    <span class="switch-right">여자</span>
+                </label>
                 <div class="file-upload">
                     <div class="image-upload-wrap">
                         <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
@@ -113,18 +115,15 @@
                     <div class="text2">
                         <p id="result_title"><strong></strong></p>
                     </div>
-                    <div id="result_imagebox">
-                        <img style="width: 200px;" src="./bts.png" alt="">
-                    </div>
-                    
                 </div>
                 <div id="result_text">
                     당신은 방탄소년단과같이 초롱초롱한 눈을 가지고 입은 앙다물 입으로 방탄소년단과 비슷한 월드스타가 될 얼굴입니다. 지금 바로 방탄소년단의 새로운 멤버로 들어가시겠어요?
                 </div>
                 <div id="label-container"></div>
                 <div class="image-title-wrap">
-                    <button type="button" onclick="restartService()" class="remove-image">다시시작하기 <span
-                            class="image-title">다시시작하기</span></button>
+                    <button type="button" onclick="restartService()" class="remove-image">다시시작하기
+
+                    </button>
                 </div>
                 <div class="hidden">
                     <p>margin</p>
@@ -172,7 +171,7 @@
         // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
 
         // the link to your model provided by Teachable Machine export panel
-        const URL = "https://teachablemachine.withgoogle.com/models/dPwJAbkBu/";
+        const URL = "https://teachablemachine.withgoogle.com/models/E_u5GAyqg/";
 
         let model, webcam, labelContainer, maxPredictions;
 
@@ -199,6 +198,7 @@
 
         // run the webcam image through the image model
         async function predict() {
+            console.log('분석중');
             // predict can take in an image, video or canvas html element
             var image = document.getElementById("face-image");
 
@@ -209,59 +209,151 @@
                 .probability));
             var resultmessage;
             var imgurl;
+
             switch (preArr[0].className) {
-                case "test1":
-                    console.log('동그란 얼굴');
-                    resultmessage = "동그란 얼굴형";
-                    imgurl = "sample.jpg"
-                    break;
-                case "test2":
-                    console.log('각진 얼굴');
-                    resultmessage = "각진형 얼굴";
-                    imgurl = "sample.jpg"
+
+                case "bts":
+                    labelTitle="방탄소년단"
+                    
                     break;
 
-                case "test3":
-                    console.log('계란형 얼굴');
-                    resultmessage = "계란형 얼굴";
-                    imgurl = "sample.jpg"
-                    break;
+                    case "astro":
+                        console.log('아스트로');
+                        resultmessage = "아스트로";
+                        imgurl = "sample.jpg"
+                        break;
 
-                case "test4":
-                    console.log('긴 얼굴');
-                    resultmessage = "긴 얼굴형";
-                    imgurl = "sample.jpg"
-                    break;
+                    case "btob":
+                        console.log('비투비');
+                        resultmessage = "비투비";
 
-                case "test5":
-                    console.log('역삼각형 얼굴');
-                    resultmessage = "역삼각형 얼굴";
-                    imgurl = "sample.jpg"
-                    break;
+                        imgurl = "sample.jpg"
+                        break;
 
-                default:
-                    resultmessage = "알수없음";
+                    case "exo":
+                        console.log('엑소');
+                        resultmessage = "엑소";
+
+                        imgurl = "sample.jpg"
+                        break;
+
+                    case "got7":
+                        console.log('갓세븐');
+                        resultmessage = "GOT7";
+  
+                        imgurl = "sample.jpg"
+                        break;
+                
+                    case "ikon":
+                        console.log('아이콘');
+                        resultmessage = "아이콘";
+    
+                        imgurl = "sample.jpg"
+                        break;
+
+                    case "nuest":
+                        console.log('뉴이스트');
+                        resultmessage = "뉴이스트";
+             
+                        imgurl = "sample.jpg"
+                        break;
+
+                    case "shinee":
+                        console.log('샤이니');
+                        resultmessage = "샤이니";
+         
+                        imgurl = "sample.jpg"
+                        break;
+
+                    case "suju":
+                        console.log('슈퍼주니어');
+                        resultmessage = "슈퍼주니어";
+              
+                        imgurl = "sample.jpg"
+                        break;
+
+                    case "seventeen":
+                        console.log('세븐틴');
+                        resultmessage = "세븐틴";
+                
+                        imgurl = "sample.jpg"
+                        break;
+
+                    default:
+                        resultmessage = "알수없음";
             }
 
             $('#result_title').html(resultmessage);
 
-            
+            console.log('dd');
             var barWidth;
-            for (let i = 0; i < maxPredictions; i++) {
-                console.log('오나');
-                console.log(prediction[i].probability);
+            for (let i = 0; i < 5; i++) {
                 if (prediction[i].probability.toFixed(2) > 0.1) {
                     barWidth = Math.round(prediction[i].probability.toFixed(2) * 100) + "%";
+                    
                 } else if (prediction[i].probability.toFixed(2) >= 0.01) {
                     barWidth = "4%"
                 } else {
                     barWidth = "2%"
                 }
 
-                var labelTitle = "테스트";
+
+                var labelTitle;
+                switch (prediction[i].className) {
+                    case "bts":
+                    labelTitle="방탄소년단"
+                
+                    break;
+                    case "astro":
+                        labelTitle="아스트로";
+                        break;
+
+                    case "btob":
+                        labelTitle="비투비"
+                        break;
+
+                    case "exo":
+                        labelTitle="엑소"
+                        break;
+
+                    case "got7":
+                        labelTitle="갓세븐"
+                        break;
+                    
+                    case "ikon":
+                        labelTitle="아이콘"
+                        break;
+
+                    case "nuest":
+                        labelTitle="뉴이스트"
+                        break;
+
+                    case "shinee":
+                        labelTitle="샤이니"
+                        break;
+
+                    case "suju":
+                        labelTitle="슈퍼주니어";
+                        break;
+
+                    case "seventeen":
+                        labelTitle="세븐틴"
+                        break;
+
+                    default:
+                        labelTitle = "알수없음"
+                
+                }
+
+
+                
+                console.log("------------체크-------------");
+                console.log(barWidth);
+                console.log(prediction[i].className);
+                console.log(prediction[i].probability);
+
                 var label = "<div class='animal-label d-flex align-items-center'>" + labelTitle + "</div>"
                 var bar = "<div class='bar-container position-relative container'><div class='" + prediction[i].className + "-box'></div><div class='d-flex justify-content-center align-items-center " +prediction[i].className + "-bar' style='width: " + barWidth +"'><span class='d-block percent-text'>" + Math.round(prediction[i].probability.toFixed(2) *100) +"%</span></div></div>"
-                console.log(labelContainer);
                 labelContainer.childNodes[i].innerHTML = label + bar;
             }
 
@@ -280,6 +372,7 @@
     <script>
         
         function startService(){
+            console.log('서비스 시작하기');
             $('#start_container').css("display","none");
             $('#navigation').css("display","block");
             $('footer').css("display","block");
@@ -287,34 +380,41 @@
 
         }
         function completed(){
-            console.log('d')
+            console.log('분석이 완료됨');
             $('#lodingimg').attr("src",'./completed.gif');
             $('#loadingtext').text('분석이 완료되었습니다!');
             $("#showButton").css("visibility", "visible");
         }
 
         function restartService(){
+            console.log('재시작하기');
             $('#result_container').css("display","none");
-            $('#inner_container').css("display","block");
             $('#file_container').css("display","block");
+            $('#lodingimg').attr("src",'./loading2.gif');
+            $('#loadingtext').text('분석이 진행중입니다.');
+            $("#showButton").css("visibility", "hidden");
             
             removeUpload();
-
+            
         }
 
         function showResult(){
-            console.log('d');
-            $("#logo_container").css("display","none");
-            $("#file_container").css("display","none");
-            $("#showButton").css("display","none");
-            $("#result-box1").css("display","none");
+            console.log('결과보여주기');
+            // $("#logo_container").css("display","none");
+            // $("#file_container").css("display","none");
+            // $("#showButton").css("display","none");
+            // $("#result-box1").css("display","none");
+            $('#file_container').css("display","none");
+            
             $("#result_container").css("display","block");
         }
 
 
 
         function readURL(input) {
+            console.log('들어오나');
             if (input.files && input.files[0]) {
+                console.log('사진 읽음');
 
                 var reader = new FileReader();
 
@@ -330,18 +430,19 @@
 
                 reader.readAsDataURL(input.files[0]);
                 init().then(() => {
-                    console.log("hello");
                     predict();
                     completed();
                     // $('#loading').hide();
                 });
 
             } else {
+                console.log('사진읽기 실패');
                 removeUpload();
             }
         }
 
         function removeUpload() {
+            console.log('사진지우기');
             $('.file-upload-input').replaceWith($('.file-upload-input').clone());
             $('.file-upload-content').hide();
             $('.image-upload-wrap').show();
